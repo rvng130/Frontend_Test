@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jasig/phpcas": "^1.6",
+        "monolog/monolog": "^3.8"
+    }
+}

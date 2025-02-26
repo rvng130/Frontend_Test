@@ -143,6 +143,38 @@ button:disabled {
     border-bottom-color: #553c9a;
 }
 
+
+/* Style for the header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+#netid {
+    font-size: 14px;
+    color: #333;
+    display: inline-block;
+    margin-left: 10px; /* Space between the logout button and NetID */
+}
+
+/* Style for the Log Out button */
+#logout-button {
+    background-color: #f44336; /* Red color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
 /* Admin Panel Styles */
 
 .admin-container {
@@ -152,16 +184,11 @@ button:disabled {
     background-color: #f4f4f4; 
 }
 .admin-button {
-    position: absolute;
-    top: 20px; 
-    left: 20px;
-    background-color: #007bff;
+    background-color: #427fcf; /* Green color */
     color: white;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 10px 20px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
+    border-radius: 5px;
 }
 .admin-button:hover {
     background-color: #0056b3;
