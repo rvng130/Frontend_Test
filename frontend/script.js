@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("cisco-tab").classList.add("active");
     }
 
+    if (document.getElementById("hrds-tab") && currentPage.includes("hrds.html")) {
+        document.getElementById("hrds-tab").classList.add("active");
+    } else if (document.getElementById("ciscods-tab") && currentPage.includes("ciscods.html")) {
+        document.getElementById("ciscods-tab").classList.add("active");
+    }
+    
+
     // Dynamic Textarea Expansion
     userInput.addEventListener("input", function () {
         this.style.height = "auto"; // Reset height first

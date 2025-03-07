@@ -46,13 +46,14 @@ body {
 /* Active state for HR Policies and Cisco Documentation buttons */
 .nav-item.active {
     background-color: black; /* Black background for active button */
-    color: white; /* White text for active button */
+    color: white; 
+    pointer-events: none; 
 }
 
-/* Hover effect for buttons */
-.nav-item:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* Light gray on hover */
-    color: rgba(0, 0, 0); 
+/* Hover effect for buttons, but NOT for the active one */
+.nav-item:not(.active):hover {
+    background-color: rgba(0, 0, 0, 0.1); 
+    color: rgba(0, 0, 0, 1);
 }
 
 /* Admin button styling */
