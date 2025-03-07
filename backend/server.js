@@ -4,7 +4,6 @@ const OpenAI = require('openai');
 const sqlite3 = require('sqlite3');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const axios = require('axios');
 
 console.log('Directory name:', __dirname);
 console.log('Full .env path:', path.join(__dirname, '../.env'));
@@ -29,7 +28,7 @@ app.use((req, res, next) => {
     const authUser = req.cookies.auth_user; // Read cookie from request
 
     if (!authUser) {
-        return res.redirect('http://localhost:8000/php/login.php');
+        return res.redirect('http://localhost:8000/php/index.php');
     }
 
     // Store user in session
