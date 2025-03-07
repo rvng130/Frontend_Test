@@ -1,3 +1,6 @@
+/* General Reset */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -5,20 +8,91 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #f0f2f5;
-    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Gray background */
+    font-family: 'Roboto', Arial, sans-serif; /* Roboto as the primary font */
+    color: #333; /* Dark text for contrast */
 }
 
-#chatbox {
+/* Ensure all text elements use Roboto */
+* {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white; /* White background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.nav-left {
+    display: flex;
+    gap: 15px;
+    padding-left: 20px; /* Added space on the left */
+}
+
+.nav-item, .admin-button {
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: black; /* Black text by default */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Active state for HR Policies and Cisco Documentation buttons */
+.nav-item.active {
+    background-color: black; /* Black background for active button */
+    color: white; /* White text for active button */
+}
+
+/* Hover effect for buttons */
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light gray on hover */
+    color: rgba(0, 0, 0); 
+}
+
+/* Admin button styling */
+.admin-button {
+    background-color: #5fadd7; /* Orange for admin button */
+    color: white;
+}
+
+.admin-button:hover {
+    background-color: #4e4aa7; /* Darker orange on hover */
+}
+
+/* Logout button styling */
+.logout-btn {
+    background-color: #dc3545; /* Red for logout */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Chat Container */
+#chat-container {
     width: 90%;
     max-width: 1200px;
-    height: 80vh; 
     margin: 20px auto;
     display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative; /* For positioning the placeholder text */
 }
 
 #messages {
@@ -29,14 +103,48 @@ body {
     border: none;
 }
 
+/* Placeholder Text Animation */
+#placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* Ensure it doesn't block input */
+}
+
+#userInput:focus + #placeholder-text,
+#userInput:not(:placeholder-shown) + #placeholder-text {
+    opacity: 0; /* Fade out when typing */
+}
+
+/* Style the placeholder text */
+#userInput::placeholder {
+    font-family: 'Roboto', Arial, sans-serif; 
+    color: #999;
+    font-size: 16px;
+}
+
+#userInput {
+    font-family: 'Roboto', Arial, sans-serif; 
+    color: #000000;
+    font-size: 16px;
+    height: 64px;
+    min-height: 64px;
+}
+
+/* Input Area */
 .input-area {
     padding: 20px;
     background-color: white;
-    border-top: 1px solid #e0e0e0;
     display: flex;
     gap: 10px;
     align-items: center;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 #userInput {
@@ -47,15 +155,19 @@ body {
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s ease;
+    resize: none;
+    overflow-y: hidden;
+    min-height: 40px;
+    max-height: 300px;
 }
 
 #userInput:focus {
-    border-color: #2b6cb0;
+    border-color: #1a365d; /* Navy border on focus */
 }
 
 button {
     padding: 12px 24px;
-    background-color: #2b6cb0;
+    background-color: #1a365d; /* Navy button */
     color: white;
     border: none;
     border-radius: 24px;
@@ -65,14 +177,15 @@ button {
 }
 
 button:hover {
-    background-color: #2c5282;
+    background-color: #12283d; /* Darker navy on hover */
 }
 
 button:disabled {
-    background-color: #cbd5e0;
+    background-color: #cbd5e0; /* Gray when disabled */
     cursor: not-allowed;
 }
 
+/* Messages */
 .message {
     max-width: 70%;
     margin: 8px 0;
@@ -82,33 +195,35 @@ button:disabled {
 }
 
 .user-message {
-    background-color: #2b6cb0;
+    background-color: #23487c; /* Navy for user messages */
     color: white;
     margin-left: auto;
     border-radius: 12px 12px 0 12px;
 }
 
 .bot-message {
-    background-color: #f0f2f5;
+    background-color: #f0f2f5; /* Light gray for bot messages */
     color: #1a202c;
     margin-right: auto;
     border-radius: 12px 12px 12px 0;
 }
 
 .error-message {
-    background-color: #fff5f5;
+    background-color: #ffebeb; /* Light red for errors */
     color: #c53030;
     text-align: center;
     margin: 8px auto;
     width: fit-content;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .loading-message {
-    background-color: #f0f2f5;
+    background-color: #f0f2f5; /* Light gray for loading */
     color: #4a5568;
     margin-right: auto;
     font-style: italic;
-    border-radius: 12px 12px 12px 0;
+    border-radius: 12px;
 }
 
 .typing-indicator {
@@ -128,9 +243,9 @@ button:disabled {
 }
 
 .bot-message a {
-    color: #2b6cb0;
+    color: #1a365d; /* Navy links */
     text-decoration: none;
-    border-bottom: 1px solid #2b6cb0;
+    border-bottom: 1px solid #1a365d;
     transition: opacity 0.2s ease;
 }
 
@@ -139,80 +254,26 @@ button:disabled {
 }
 
 .bot-message a:visited {
-    color: #553c9a;
+    color: #553c9a; /* Purple for visited links */
     border-bottom-color: #553c9a;
 }
 
-
-/* Style for the header */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-
-#netid {
-    font-size: 14px;
-    color: #333;
-    display: inline-block;
-    margin-left: 10px; /* Space between the logout button and NetID */
-}
-
-/* Style for the Log Out button */
-#logout-button {
-    background-color: #f44336; /* Red color */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: auto;
-}
-
-#logout-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-}
-
 /* Admin Panel Styles */
-
 .admin-container {
-    width: 100%; 
-    text-align: left; 
-    padding: 0px 20px; 
-    background-color: #f4f4f4; 
-}
-.admin-button {
-    background-color: #427fcf; /* Green color */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-.admin-button:hover {
-    background-color: #0056b3;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
-.admin-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
     max-width: 1200px;
     margin: 2rem auto;
+    text-align: left;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-header h1 {
     font-size: 24px;
     margin-bottom: 1rem;
-    margin-top: 40px;
+    color: rgb(0, 0, 0); /* Navy header */
 }
 
 .admin-content {
@@ -225,8 +286,8 @@ body {
     width: 30%;
     background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sessions-list {
@@ -243,7 +304,7 @@ body {
 }
 
 .session-item:hover {
-    background-color: #007bff;
+    background-color: #1a365d; /* Navy on hover */
     color: white;
 }
 
@@ -252,27 +313,27 @@ body {
     background-color: white;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .messages-log {
     padding: 10px;
-    background-color: #e9e9e9;
+    background-color: #f9f9f9;
     border-radius: 5px;
     height: 60vh;
     overflow-y: scroll;
 }
 
 .message-item {
-    background-color: #fff;
+    background-color: white;
     padding: 10px;
     margin: 8px 0;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
 }
 
 .message-item strong {
-    color: #2b6cb0;
+    color: #1a365d; /* Navy for emphasis */
 }
 
 .message-item .response {
@@ -280,16 +341,18 @@ body {
     color: #333;
 }
 
+/* Admin Page Header */
 #header {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #f1f1f1; 
+    background-color: #ffffff00; /* Navy header */
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 100;
+    color: rgb(0, 0, 0);
 }
 
 #back-button, #delete-all-button {
@@ -298,31 +361,32 @@ body {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    
 }
 
 #back-button {
-    background-color: #007bff;
+    background-color: rgba(215, 76, 8); /* Orange for back button */
     color: white;
 }
 
 #back-button:hover {
-    background-color: #0056b3; 
+    background-color: rgba(155, 60, 5); /* Darker orange on hover */
 }
 
 #delete-all-button {
-    background-color: #dc3545; 
+    background-color: #dc3545; /* Red for delete button */
     color: white;
-    margin-right: 40px;
+    
 }
 
 #delete-all-button:hover {
-    background-color: #c82333; 
+    background-color: #c82333; /* Darker red on hover */
 }
 
-
 #sessions-container {
-    margin-top: 60px; 
+    margin-top: 60px;
     display: flex;
 }
 
@@ -335,7 +399,34 @@ body {
 .error-message {
     color: #dc3545;
     padding: 10px;
-    background-color: #f8d7da;
+    background-color: #ffebeb;
     border-radius: 4px;
     margin: 10px 0;
+}
+
+
+/*rrrr*/
+
+/* Center the message */
+.center-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    text-align: center;
+    color: #000000;
+    transition: opacity 1s ease-out;
+    font-weight: bold;
+    z-index: 9999; /* Ensures it stays on top */
+}
+
+.center-message.blink-out {
+    opacity: 0;
+    visibility: hidden; 
+    pointer-events: none;
 }

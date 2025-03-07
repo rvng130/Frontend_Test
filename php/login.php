@@ -24,6 +24,6 @@ echo "Authenticated user: " . $user . "\n";
 setcookie("auth_user", $user, time() + 3600, "/", "localhost", false, true);
 
 // Redirect to homepage after successful login
-header('Location: http://localhost:3000/');
+header('Location: http://localhost:3000/hr.html');
 exit();
 ?>

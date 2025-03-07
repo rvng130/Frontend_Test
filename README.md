@@ -74,3 +74,17 @@ npm install express cors dotenv openai
 ## Acknowledgments
 
 This project uses the OpenAI API for generating chatbot responses.
+
+
+NEW DEPENDENCIES MAC/LINUX:
+brew install php
+
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+
+composer require jasig/phpcas  (check if phpcas is installed in the vendor/ folder before doing this, if its there skip this)
+
+npm install cookie-parser
+
+For local Testing:
+php -S localhost:8000
